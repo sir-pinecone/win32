@@ -7,7 +7,7 @@ keywords:
 - Helper structures
 - d3dx12.h
 ms.topic: article
-ms.date: 05/31/2018
+ms.date: 11/07/2024
 ---
 
 # Helper structures and functions for Direct3D 12
@@ -18,17 +18,17 @@ You can use these helper structures to create and initialize Direct3D structures
 
 ## Integration
 
-The original D3DX12 library was a single C++ header file, `d3dx12.h`, you copied into your project. There are a number of DirectX related project templates that make use of this form of integration.
+The original D3DX12 library was a single C++ header file (`d3dx12.h`), which you copied into your project. There are a number of DirectX-related project templates that make use of that form of integration.
 
-The library has since been refactored into multiple files to make it more modular and easier to maintain, and some functionality was added (i.e. property tables) which requires a small static library. There are a number of choices for integrating this new library into your project:
+The library has since been refactored into multiple files in order to make it more modular and easier to maintain, and some functionality was added (for example, property tables) that requires a small static library. There are a number of choices for integrating this new library into your project:
 
 * Download the files from [GitHub](https://github.com/microsoft/DirectX-Headers/blob/main/include/directx/) and copy the `d3dx12*.*` files into your project. The files are available under the [MIT License](https://github.com/microsoft/DirectX-Headers/blob/main/LICENSE).
 
-* Use the [DirectX-Headers](https://github.com/microsoft/DirectX-Headers) repository as a 'git submodule' for your project. There is a `CMakeList.txt` included for building the auxiliary static library neeed for property table data.
+* Use the [DirectX-Headers](https://github.com/microsoft/DirectX-Headers) repository as a 'git submodule' for your project. There is a `CMakeList.txt` included for building the auxiliary static library needed for property table data.
 
-* Make use of the NuGet package [Microsoft.Direct3D.D3D12](https://www.nuget.org/packages/Microsoft.Direct3D.D3D12/) in your project which includes the D3DX12 library along with the [DirectX 12 Agility SDK](https://aka.ms/directx12agility). For more information, see [Microsoft Learn](https://learn.microsoft.com/nuget/quickstart/install-and-use-a-package-in-visual-studio).
+* Make use of the NuGet package [Microsoft.Direct3D.D3D12](https://www.nuget.org/packages/Microsoft.Direct3D.D3D12/) in your project, which includes the D3DX12 library along with the [DirectX 12 Agility SDK](https://aka.ms/directx12agility). For more info, see [Install and use a NuGet package in Visual Studio](/nuget/quickstart/install-and-use-a-package-in-visual-studio).
 
-* Make use of the **directx-headers** port in VCPKG. For more information, see [Microsoft Learn](https://learn.microsoft.com/vcpkg/get_started/overview).
+* Make use of the **directx-headers** port in VCPKG. For more info, see [vcpkg overview](/vcpkg/get_started/overview).
 
 ## In this section
 
