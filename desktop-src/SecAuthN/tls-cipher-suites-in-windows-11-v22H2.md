@@ -1,11 +1,11 @@
 ---
-description: Learn about TLS cipher suites in Windows 11 v22H2. Cipher suites can only be negotiated for TLS versions which support them.
-title: TLS Cipher Suites in Windows 11 v22H2.
+description: Learn about TLS cipher suites in Windows 11 v22H2 and later. Cipher suites can only be negotiated for TLS versions which support them.
+title: TLS Cipher Suites in Windows 11 v22H2 and later.
 ms.topic: article
-ms.date: 06/26/2024
+ms.date: 11/13/2024
 ---
 
-# TLS Cipher Suites in Windows 11 v22H2
+# TLS Cipher Suites in Windows 11 v22H2 and later
 
 Cipher suites can only be negotiated for TLS versions which support them. The highest supported TLS version is always preferred in the TLS handshake.
 
@@ -19,7 +19,7 @@ Availability of cipher suites should be controlled in one of two ways:
 
 FIPS-compliance has become more complex with the addition of elliptic curves making the FIPS mode enabled column in previous versions of this table misleading. For example, a cipher suite such as TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256 is only FIPS-compliant when using NIST elliptic curves. To find out which combinations of elliptic curves and cipher suites will be enabled in FIPS mode, see section 3.3.1 of [Guidelines for the Selection, Configuration, and Use of TLS Implementations]( https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-52r2.pdf).
 
-For Windows 11 v22H2, the following cipher suites are enabled and in this priority order by default using the Microsoft Schannel Provider:
+For Windows 11 v22H2 and later, the following cipher suites are enabled and in this priority order by default using the Microsoft Schannel Provider:
 
 | Cipher suite string                                                                           | Allowed by SCH\_USE\_STRONG\_CRYPTO | TLS/SSL Protocol versions                     |
 |-----------------------------------------------------------------------------------------------|-------------------------------------|-----------------------------------------------|
