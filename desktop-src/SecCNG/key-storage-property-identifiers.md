@@ -3,7 +3,7 @@ description: Used to identify a key storage property.
 ms.assetid: 407f0e42-07c8-4ec6-81c6-f8bde005adb0
 title: Key Storage Property Identifiers (Ncrypt.h)
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 11/13/2024
 ---
 
 # Key Storage Property Identifiers
@@ -102,12 +102,13 @@ A **DWORD** that contains a set of flags that define the key type. This property
 
 A **DWORD** that contains a set of flags that define the usage details for a key. This property only applies to keys. This can contain zero or a combination of one or more of the following values.
 
-| Identifier                          | Value      | Description                                          |
-|-------------------------------------|------------|------------------------------------------------------|
-| **NCRYPT_ALLOW_DECRYPT_FLAG**       | 0x00000001 | The key can be used for decryption.                  |
-| **NCRYPT_ALLOW_SIGNING_FLAG**       | 0x00000002 | The key can be used for signing.                     |
-| **NCRYPT_ALLOW_KEY_AGREEMENT_FLAG** | 0x00000004 | The key can be used for secret agreement encryption. |
-| **NCRYPT_ALLOW_ALL_USAGES**         | 0x00ffffff | The key can be used for any purpose.                 |
+| Identifier                            | Value      | Description                                          |
+|---------------------------------------|------------|------------------------------------------------------|
+| **NCRYPT_ALLOW_DECRYPT_FLAG**         | 0x00000001 | The key can be used for decryption.                  |
+| **NCRYPT_ALLOW_SIGNING_FLAG**         | 0x00000002 | The key can be used for signing.                     |
+| **NCRYPT_ALLOW_KEY_AGREEMENT_FLAG**   | 0x00000004 | The key can be used for secret agreement encryption. |
+| **NCRYPT_ALLOW_KEY_ATTESTATION_FLAG** | 0x00000010 | Indicates the key is a key with attestation.         |
+| **NCRYPT_ALLOW_ALL_USAGES**           | 0x00ffffff | The key can be used for any purpose.                 |
 
 ### NCRYPT_LAST_MODIFIED_PROPERTY
 
@@ -257,6 +258,12 @@ A [ULARGE_INTEGER](/windows/win32/api/winnt/ns-winnt-ularge_integer~r1) variable
 `L"SmartCardUserCertStore"`
 
 An **HCERTSTORE** that represents the smart card user certificate store.
+
+### NCRYPT_VBS_ROOT_PUB_PROPERTY
+
+`L"VBS_ROOT_PUB"`
+
+A new property of the **MS_KEY_STORAGE_PROVIDER** provider. This property enables the retrieval of the public part of the root Signing Key (IDKS) of Virtualization Based Security (VBS).
 
 ### NCRYPT_VERSION_PROPERTY
 
