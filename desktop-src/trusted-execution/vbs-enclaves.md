@@ -3,11 +3,14 @@ description: A Virtualization-based security (VBS) Enclave is a software-based t
 ms.assetid: c6b272ee-c284-4c49-b12d-6a49b0315281
 title: Virtualization-based security (VBS) enclaves
 titleSuffix: Secure Enclaves
-ms.topic: article
-ms.date: 05/10/2024
+ms.topic: concept-article
+ms.date: 11/13/2024
+# customer intent: To learn about the Virtualization-based security (VBS) Enclaves feature in Windows.
 ---
 
 # Virtualization-based security (VBS) enclaves
+
+**Applies to:** ✅ Windows 11 Build 26100.2314 or later ✅ Windows Server 2022 or later
 
 A Virtualization-based security (VBS) Enclave is a software-based trusted execution environment inside the address space of a host application. VBS Enclaves leverage underlying [VBS technology](/windows-hardware/design/device-experiences/oem-vbs) to isolate the sensitive portion of an application in a secure partition of memory. VBS Enclaves enable isolation of sensitive workloads from both the host application and the rest of the system.
 
@@ -20,7 +23,7 @@ By planning ahead and isolating the sensitive part of your workload, you can iso
 The following are required to run VBS Enclaves:
 
 - VBS/HVCI must be enabled. This should be enabled on Windows 11 or later by default. See [Enable virtualization-based protection of code integrity](/windows/security/hardware-security/enable-virtualization-based-protection-of-code-integrity) for more information.
-- Windows 11 or later **or** Windows Server 2019 or later.
+- Windows 11 Build 26100.2314 or later ***or*** Windows Server 2022 or later.
 
 ## Development prerequisites
 
