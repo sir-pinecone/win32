@@ -2,7 +2,7 @@
 title: Developer audience, and sample code
 description: This topic describes the groups of developers for whom the Antimalware Scan Interface is designed.
 ms.topic: article
-ms.date: 03/20/2019
+ms.date: 11/14/2024
 ---
 
 # Developer audience, and sample code
@@ -121,3 +121,33 @@ In addition to regular COM registration, you also need to enroll the provider wi
 For example,
 
 **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AMSI\Providers\\{2E5D8A62-77F9-4F7B-A90C-2744820139B2}**
+
+## Known issues
+
+If you have a non-Microsoft antimalware service that's [Windows Protected Process Light (PPL)](/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_protection_level_information) or [Antimalware Protected Process Light (Anti-malware PPL)](/windows/win32/services/protecting-anti-malware-services-) that tries to load in an AMSI provider, you might see the following information in the Code Integrity event log:
+
+```properties
+ 
+Log Name: Microsoft-Windows-CodeIntegrity/Operational 
+
+Source: Microsoft-Windows-CodeIntegrity 
+
+Event ID: 3033 
+
+Description: 
+
+Code Integrity determined that a process (\Device\HarddiskVolume3\<Folder>\<Folder w/ the ISV name>\<Folder w/ the product name>\<ProcessName>.exe) attempted to load \Device\HarddiskVolume3\<Folder>\<Folder w/ the ISV name>\<Folder w/ the product name>\<Your Amsi Provider>.dll that did not meet the Custom 3 / Antimalware signing level requirements. 
+
+```
+
+To view  the Code Integrity event log, follow these steps:
+
+1. Open Event Viewer. 
+
+2. In the navigation pane, expand **Applications and Services Logs** > **Microsoft** > **Windows** > **Code Integrity**, and then select **Operational**. 
+
+Or if you have System Audit Integrity auditing enabled, look for this:
+
+- Log Name: Security
+- Source: Microsoft Windows Security 
+- Event ID: `5038` 
