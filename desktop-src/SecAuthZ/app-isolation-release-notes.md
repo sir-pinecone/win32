@@ -29,7 +29,7 @@ This page contains the summary of newly supported features in Windows OS release
 1. Drag and drop into applications
 1. Application multi-instancing with ShellExecute
 
-## Windows build 2161 (2024-10-24)
+## Windows build 26100.2161 (2024-10-24)
 
 1. Packages run isolated in supported OSes and fall back to FullTrust in non-supported ones
 1. VS support to package apps with isolation
