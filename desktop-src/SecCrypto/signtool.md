@@ -3,12 +3,12 @@ title: SignTool
 description: Learn how to use SignTool, a command-line tool that digitally signs files, verifies the signatures in files, and time stamps files.
 ms.assetid: aa59cb35-5fba-4ce8-97ea-fc767c83f88e
 ms.topic: article
-ms.date: 07/16/2024
+ms.date: 11/21/2024
 ---
 
 # SignTool
 
-SignTool is a command-line tool that digitally signs files, verifies the signatures in files, and time stamps files. For information about why signing files is important, see [Introduction to code signing](cryptography-tools.md).
+SignTool is a command-line tool that digitally signs files, verifies the signatures in files, removes the signatures from files, and time stamps files. For information about why signing files is important, see [Introduction to code signing](cryptography-tools.md).
 
 SignTool is available as part of the [Windows Software Development Kit (SDK)](https://developer.microsoft.com/windows/downloads/windows-sdk). The tool is installed in the `\Bin` folder of the Windows SDK installation path, for example: `C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe`.
 
@@ -35,10 +35,11 @@ SignTool supports the following commands:
 
 | Command | Description |
 |---------|-------------|
-| `catdb` | Adds a catalog file to, or removes it from, a catalog database. Catalog databases are used for automatic lookup of catalog files and are identified by GUID. For a list of the options supported by the `catdb` command, see [catdb command options](/dotnet/framework/tools/signtool-exe#catdb-command-options). |
-| `sign` | Digitally signs files. Digital signatures protect files from tampering and enable users to verify the signer based on a signing certificate. For a list of the options supported by the `sign` command, see [sign command options](/dotnet/framework/tools/signtool-exe#sign-command-options). |
-| `timestamp` | Time stamps files. For a list of the options supported by the `timestamp` command, see [timestamp command options](/dotnet/framework/tools/signtool-exe#timestamp-command-options). |
-| `verify` | Verifies the digital signature of files. Determines whether the signing certificate was issued by a trusted authority, whether the signing certificate has been revoked, and, optionally, whether the signing certificate is valid for a specific policy. For a list of the options supported by the `verify` command, see [verify command options](/dotnet/framework/tools/signtool-exe#verify-command-options). |
+| `catdb` | Adds a catalog file to, or removes it from, a catalog database. Catalog databases are used for automatic lookup of catalog files and are identified by GUID. For a list of the options supported by the `catdb` command, see [catdb command options](#catdb-command-options). |
+| `remove` | Removes a signature from a file. For a list of the options supported by the `remove` command, see [remove command options](#remove-command-options). |
+| `sign` | Digitally signs files. Digital signatures protect files from tampering and enable users to verify the signer based on a signing certificate. For a list of the options supported by the `sign` command, see [sign command options](#sign-command-options). |
+| `timestamp` | Time stamps files. For a list of the options supported by the `timestamp` command, see [timestamp command options](#timestamp-command-options). |
+| `verify` | Verifies the digital signature of files. Determines whether the signing certificate was issued by a trusted authority, whether the signing certificate has been revoked, and, optionally, whether the signing certificate is valid for a specific policy. For a list of the options supported by the `verify` command, see [verify command options](#verify-command-options). |
 
 The following options apply to all SignTool commands:
 
@@ -61,6 +62,18 @@ The following table lists the options that can be used with the `catdb` command:
 
 > [!NOTE]
 > Catalog databases are used for automatic lookup of catalog files.
+
+## Remove command options
+
+The following table lists the options that can be used with the `remove` command:
+
+| Remove option | Description |
+|---------------|-------------|
+| `/c` | Remove all certificates, except for the signer certificate from the signature. |
+| `/q` | No output on success and minimal output on failure. As always, SignTool returns `0` on success and `1` on failure. |
+| `/s` | Remove the signature entirely. |
+| `/u` | Remove the unauthenticated attributes from the signature e.g. dual signatures and timestamps. |
+| `/v` | Print verbose success and status messages. This may also provide slightly more information on error. |
 
 ## Sign command options
 
@@ -222,6 +235,12 @@ The following command verifies a system file that's signed in a catalog named `M
 
 ```console
 signtool verify /c MyCatalog.cat SystemFile.dll
+```
+
+The following command completely removes the signature from a file.
+
+```console
+signtool remove /s MyFile.exe
 ```
 
 ## See also
