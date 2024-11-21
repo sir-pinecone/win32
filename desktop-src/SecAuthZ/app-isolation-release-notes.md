@@ -13,7 +13,7 @@ This page contains the summary of newly supported features in Windows OS release
 
 ## Windows build 26100.2161 (2024-10-24)
 
-1. Packages run isolated in supported OSes and fall back to FullTrust in non-supported ones
+1. Packages run isolated on supported OSes and fall back to FullTrust on non-supported ones
 1. VS support to package apps with isolation
 
 ## Windows Insiders build (Canary Channel) 25905 (2023-07-12)
