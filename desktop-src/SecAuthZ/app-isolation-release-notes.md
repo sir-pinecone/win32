@@ -16,7 +16,7 @@ This page contains the summary of newly supported features in Windows OS release
 1. Packages run isolated in supported OSes and fall back to FullTrust in non-supported ones
 1. VS support to package apps with isolation
 
-## Windows insiders build (Canary Channel) 25905 (2023-07-12)
+## Windows Insiders build (Canary Channel) 25905 (2023-07-12)
 
 1. File consent prompt reduction for:
    - Legacy directory browsing
@@ -25,7 +25,7 @@ This page contains the summary of newly supported features in Windows OS release
 1. Drag and drop into applications
 1. Application multi-instancing with ShellExecute
 
-## Windows insiders build (Canary Channel) 25357 (2023-05-04)
+## Windows Insiders build (Canary Channel) 25357 (2023-05-04)
 
 1. Implicit brokering for the open file dialog and other APIs
 1. Printing
