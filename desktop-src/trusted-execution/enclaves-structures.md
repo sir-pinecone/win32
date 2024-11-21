@@ -4,12 +4,15 @@ ms.assetid: 61F99132-E947-4EA4-86A0-914CE316B53A
 title: Enclave Structures (Trusted Execution)
 titleSuffix: Secure Enclaves
 ms.topic: article
-ms.date: 05/31/2018
+ms.date: 11/20/2024
 ---
 
 # Enclave Structures
 
 The following structures are used when working with enclaves that are used to create trusted execution environments.
+
+> [!NOTE]
+> Using these APIs for a VBS Enclave requires Windows 11 Build 26100.2314 or later or Windows Server 2025 or later.
 
 ## In this section
 

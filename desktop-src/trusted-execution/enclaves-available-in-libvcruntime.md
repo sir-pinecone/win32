@@ -4,10 +4,12 @@ ms.assetid: 659f28af-ed6c-46f6-b8c5-bb5784bc6c6b
 title: libvcruntime APIs available in VBS enclaves
 titleSuffix: Secure Enclaves
 ms.topic: article
-ms.date: 01/24/2024
+ms.date: 11/20/2024
 ---
 
 # libvcruntime APIs available in VBS enclaves
+
+[!INCLUDE [enclaves-os-reqs.md](../includes/enclaves-os-reqs.md)]
 
 Enclaves are used to create trusted execution environments. These `libvcruntime.lib` APIs are available to be statically linked into code running in VBS enclaves.
 
