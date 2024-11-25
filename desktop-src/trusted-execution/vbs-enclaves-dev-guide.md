@@ -3,11 +3,13 @@ description: Development guide for Virtualization-based security (VBS) enclaves 
 title: VBS Enclaves Development Guide
 titleSuffix: Secure Enclaves
 ms.topic: how-to
-ms.date: 06/24/2024
+ms.date: 11/20/2024
 #customer intent: As a VBS Enclaves developer, I want to understand how to get started with enclaves so that I can develop my apps on the platform.
 ---
 
 # Development guide for Virtualization-based security (VBS) Enclaves
+
+[!INCLUDE [enclaves-os-reqs.md](../includes/enclaves-os-reqs.md)]
 
 This development guide describes how to build, sign, and debug a basic VBS enclave.
 

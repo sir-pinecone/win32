@@ -4,10 +4,12 @@ ms.assetid: 8e5588b6-0b1a-4ba6-9729-33f4e41e867c
 title: Vertdll APIs available in VBS enclaves
 titleSuffix: Secure Enclaves
 ms.topic: article
-ms.date: 01/29/2024
+ms.date: 11/20/2024
 ---
 
 # Vertdll APIs available in VBS enclaves
+
+[!INCLUDE [enclaves-os-reqs.md](../includes/enclaves-os-reqs.md)]
 
 Enclaves are used to create trusted execution environments. These Vertdll APIs are available to developers in VBS enclaves.
 
