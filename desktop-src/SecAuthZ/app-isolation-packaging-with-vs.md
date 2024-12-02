@@ -60,7 +60,7 @@ if it's not there already.
 `<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26100.0" />`.
 
   > [!NOTE]
-  > Not all features are available in the minimum build, check out the [release notes](https://github.com/microsoft/win32-app-isolation/blob/main/relnotes/windows-release-notes.md) for more detailed information.
+  > Not all features are available in the minimum build, check out the [release notes](app-isolation-release-notes.md) for more detailed information.
 
 - In `<Application>` replace any existing entrypoint/trustlevel/runtimebehavior with `uap10:TrustLevel="appContainer" previewsecurity2:RuntimeBehavior="appSilo"`.
 - In `<Application>` extensions, remove any `EntryPoints=*` or `Executable=*` as those are inherited from the parent `<Application>`
