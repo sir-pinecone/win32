@@ -1,7 +1,7 @@
 ---
 title: Update Orchestrator API
 description: UpdateOrchestrator schedules your automatic software updates with user impact in mind. 
-ms.date: 01/29/2020
+ms.date: 12/4/2024
 ms.topic: overview
 ---
 
@@ -60,13 +60,13 @@ Each registration file must contain the following required JSON properties:
 
 | Key | Type | Description | 
 | --- | ---- | ----------- |
-| PFN | String | The Package Family Name of the app (ex: Microsoft.WindowsStore_8wekyb3d8bbwe) |
+| PFN | String | The Package Family Name of the app (ex: Microsoft.WindowsStore_??????????) |
 | OEMName | String | String to represent the OEM creating this registration |
 | UpdaterName | String | Unique name to track this expedited registration |
-| RegistrationVersion | Number | The Package Family Name of the app (ex: Microsoft.WindowsStore_8wekyb3d8bbwe) |
+| RegistrationVersion | Number | The Package Family Name of the app (ex: Microsoft.WindowsStore_???????????) |
 | Source | String | Allowed values:<br>Store &#124; CustomURL<br><br>Store – searches for the app directly from the Microsoft Store<br><br>CustomURL – searches for the app from a URL specified in the app registration's "Endpoint" value |
 | Scenario | String | Allowed values:<br>Update &#124; Acquisition &#124; StubAcquisition<br><br>Update – (Not supported for CustomURL flows) attempts to update an existing app to its latest available version.  No work is done if the app is not present<br><br>Acquisition – attempts to acquire the latest version of an app.<br><br>StubAcquisition -  attempts to acquire a "stub" of the app (if it is available).  Acquires the full app if the stub is not available. |
-| ProductId | String | (Only required for Store scenarios)<br><br>The ProductId of the desired Store app<br>(ex. 9WZDNCRFJBH4) |
+| ProductId | String | (Only required for Store scenarios)<br><br>The ProductId of the desired Store app<br> |
 | Endpoint | String | (Only required for CustomURL scenarios)<br><br>A string URI pointing to a location hosting an MSIX package. Must be an SSL URI that begins with 'https'. |
 
 <br>
@@ -84,8 +84,8 @@ Additionally, the following optional properties can be specified to modify the b
 | Priority | Number | 100 | A numeric value from 1 – 100 to indicate relative priority of this application update.<br><br>Lower values indicate a higher relative priority to other expedited apps. |
 | ExcludedRegions | Array (String) | No restrictions | A JSON array of strings for regions where this app should NOT be expedited.<br>Each entry in the array corresponds to the 2 letter ISO 3166-1 country code of the desired region.<br><br>Ex: `["US", "MX"]` would prevent this flow on devices where the region is United States or Mexico.<br><br>**Note:** This value cannot be used in conjunction with IncludedRegions. |
 | IncludedRegions | Array (String) | No restrictions | A JSON array of strings that indicate an allow list of regions where this app should be expedited.<br>Each entry in the array corresponds to the 2 letter ISO 3166-1 country code of the desired region.<br><br>Ex: `["US", "MX"]` would allow this flow only on devices where the region is United States or Mexico.<br><br>**Note:** This value cannot be used in conjunction with ExcludedRegions. |
-| IncludedEditions | Array (Number) | No restrictions | A JSON array of numbers that indicate an allow list of Editions where this app should be expedited.<br>Each entry in the array corresponds to the Edition code retrieved by the [GetProductInfo API](https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo).<br><br>Ex: `[121, 122]` to include only Education and EducationN Editions<br><br>**Note:** This value cannot be used in conjunction with ExcludedEditions. |
-| ExcludedEditions | Array (Number) | No restrictions | A JSON array of numbers for Editions where this app should NOT be expedited.<br>Each entry in the array corresponds to the Edition code retrieved by the [GetProductInfo API](https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo).<br><br> Ex: `[121, 122]` to exclude Education and EducationN Editions.<br><br>**Note:** This value cannot be used in conjunction with IncludedEditions. |  
+| IncludedEditions | Array (Number) | No restrictions | A JSON array of numbers that indicate an allow list of Editions where this app should be expedited.<br>Each entry in the array corresponds to the Edition code retrieved by the [GetProductInfo API](/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo).<br><br>Ex: `[121, 122]` to include only Education and EducationN Editions<br><br>**Note:** This value cannot be used in conjunction with ExcludedEditions. |
+| ExcludedEditions | Array (Number) | No restrictions | A JSON array of numbers for Editions where this app should NOT be expedited.<br>Each entry in the array corresponds to the Edition code retrieved by the [GetProductInfo API](/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo).<br><br> Ex: `[121, 122]` to exclude Education and EducationN Editions.<br><br>**Note:** This value cannot be used in conjunction with IncludedEditions. |  
                                             
 ### Samples
 **Store-based stub acquisition, only in US and Mexico, to execute during OOBE**<br>
@@ -95,7 +95,7 @@ Additionally, the following optional properties can be specified to modify the b
         "Source": "Store",  
         "Scenario": "StubAcquisition",  
         "PFN": "FakePackageFamilyName",  
-        "ProductId": "11111111111",  
+        "ProductId": "???????????",  
         "HonorDeprovisioning": true,  
         "AllowedInOobe": true,  
         "IncludedRegions": ["US", "MX"],  
@@ -129,22 +129,22 @@ The scripts perform basic validation and stage the registration to the appropria
 <br>
 To use the scripts:
 1. Download the scripts to your device
-2. In a powershell window, run "Import-Module <PathToScripts>\AppOrchestration.psd1"
+2. In a powershell window, run \"Import-Module &lt;PathToScripts&gt;\AppOrchestration.psd1\"
 
 **Note:** These scripts require the user to have administrative privileges on the device, and must be executed from an elevated console.
 
 There are 4 main cmdlets used for the registration flow
 
-**Test-UpdaterRegistration <PathToRegistrationFile>**  
+**Test-UpdaterRegistration &lt;PathToRegistrationFile&gt;**  
 Purpose:  Validate contents of a proposed registration file (without performing registration).  Allows OEM to iterate on the registration file payload without affecting the device
 
-**Add-UpdaterRegistration <PathToRegistrationFile>**  
+**Add-UpdaterRegistration &lt;PathToRegistrationFile&gt;**  
 Purpose:  Validate and Stage the contents of a registration file to the appropriate location, to onboard to the expedited app flow
 
-**Get-UpdaterRegistration `[OEMName]` `[UpdaterName]`**  
+**Get-UpdaterRegistration &lt;OEMName&gt; &lt;UpdaterName&gt;**  
 Purpose:  If OEMName and UpdaterName are provided, returns a summary of an existing registration that matches those values.  If those inputs are omitted, returns a summary of all the current registrations present on the device.
 
-**Remove-UpdaterRegistration <OEMName> <UpdaterName>**  
+**Remove-UpdaterRegistration &lt;OEMName&gt; &lt;UpdaterName&lt;**  
 Purpose:  Unstages any registration that matches the OEMName and UpdaterName values.
 <br><br>
 
@@ -157,8 +157,8 @@ The Universal Orchestrator framework will not perform expedited attempts if any 
 - Device does not have internet access  
 - Device is on a metered network  
 - Device is on battery, and battery saver is enabled  
-- Device is configured with a [Windows Update Restricted Network Traffic policy](https://learn.microsoft.com/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services#bkmk-wu)  
-- Device is configured with a [CTA policy](https://learn.microsoft.com/windows-hardware/customize/desktop/unattend/microsoft-windows-deviceaccess-setregionspecificprivacyaccesspolicy) that is not set for AutoApprove  
+- Device is configured with a [Windows Update Restricted Network Traffic policy](/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services#bkmk-wu)  
+- Device is configured with a [CTA policy](/windows-hardware/customize/desktop/unattend/microsoft-windows-deviceaccess-setregionspecificprivacyaccesspolicy) that is not set for AutoApprove  
 <br>
 In each of these cases, the Universal Orchestrator framework will keep the registrations in place until the device configuration allows expedited attempts to proceed.
 <br>
