@@ -55,7 +55,7 @@ cleanup:
         EvtClose(hRemote);
 }
 
-// Create a session conext for the remote computer. Set the 
+// Create a session context for the remote computer. Set the 
 // Domain, User, and Password member to NULL to specify
 // the current user.
 EVT_HANDLE ConnectToRemote(LPWSTR lpwszRemote)
