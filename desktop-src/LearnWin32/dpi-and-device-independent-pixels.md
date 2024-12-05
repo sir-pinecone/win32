@@ -123,7 +123,7 @@ float PixelsToDipsX(T x)
 }
 
 template <typename T>
-float PixelsToDips(T y)
+float PixelsToDipsY(T y)
 {
     return static_cast<float>(y) / g_DPIScale;
 }
