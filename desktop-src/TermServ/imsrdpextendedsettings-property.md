@@ -80,7 +80,7 @@ The named property value.
 | GatewayCertificateLogonAuthority  |VT_BSTR  |W  |No  |This property is not supported anymore. It is subject to removal in future versions of Windows. Do not use this property.  |
 | EnableRemoteEdgeBar  |VT_BOOL  |R/W  |No  |If **True** and the **ServerSupportsEdgeActions** property is **True**, additional commands are shown in the connection toolbar of the remote session.  |
 | TSGTransportIsUsed  |VT_BOOL  |R  |N/A  |If **True**, a Remote Desktop gateway is in use for the associated remote session.  |
-| DiagnosticsInfo  |VT_BSTR  |W  |No  |A hexadecimal string representing the **rdpCorrelationInfo.correlationId** field of the [Client X.224 Connection Request PDU](/openspecs/windows_protocols/ms-rdpbcgr/18a27ef9-6f9a-4501-b000-94b1fe3c2c10).  |
+| DiagnosticsInfo  |VT_BSTR  |W  |No  |A hexadecimal string representing the **rdpCorrelationInfo.correlationId** field of the [Client X.224 Connection Request PDU](/openspecs/windows_protocols/ms-rdpbcgr/aaaa0000-bb11-2222-33cc-444444dddddd).  |
 | EndpointFedAuth  |VT_BSTR  |W  |No  |The token used for claim-based federated [RDSTLS authentication](/openspecs/windows_protocols/ms-rdpbcgr/2aa353a2-2e46-4bb7-84ef-9354eb07a25f).  |
 | AllowAxToContainerEvents  |VT_BOOL  |W  |No  |This property was added in Windows 11 22H2. <ul><li>If **False** (default behavior starting in Windows 11 22H2), CTRL+ALT+ARROW key combinations are sent to the remote session.</li><li>If **True** (default behavior before Windows 11 22H2), CTRL+ALT+ARROW key combinations raises a [IMsTscAxEvents::OnFocusReleased](/windows/win32/termserv/imstscaxevents-onfocusreleased) event to the application.</li></ul> |
 | ServerSupportsEdgeActions  |VT_BOOL  |R  |N/A  |Read-only property to determine whether the remote session has the **RNS_UD_SC_EDGE_ACTIONS_SUPPORTED_V1** capability [https://learn.microsoft.com/openspecs/windows_protocols/ms-rdpbcgr/379a020e-9925-4b4f-98f3-7d634e10b411](/openspecs/windows_protocols/ms-rdpbcgr/379a020e-9925-4b4f-98f3-7d634e10b411).  |
@@ -130,8 +130,3 @@ The named property value.
  
 
  
-
-
-
-
-
