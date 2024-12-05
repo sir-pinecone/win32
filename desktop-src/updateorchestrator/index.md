@@ -60,10 +60,10 @@ Each registration file must contain the following required JSON properties:
 
 | Key | Type | Description | 
 | --- | ---- | ----------- |
-| PFN | String | The Package Family Name of the app (ex: Microsoft.WindowsStore_??????????) |
+| PFN | String | The Package Family Name of the app (ex: Microsoft.WindowsStore_8wekyb3d8bbwe) |
 | OEMName | String | String to represent the OEM creating this registration |
 | UpdaterName | String | Unique name to track this expedited registration |
-| RegistrationVersion | Number | The Package Family Name of the app (ex: Microsoft.WindowsStore_???????????) |
+| RegistrationVersion | Number | The Package Family Name of the app (ex: Microsoft.WindowsStore_8wekyb3d8bbwe) |
 | Source | String | Allowed values:<br>Store &#124; CustomURL<br><br>Store – searches for the app directly from the Microsoft Store<br><br>CustomURL – searches for the app from a URL specified in the app registration's "Endpoint" value |
 | Scenario | String | Allowed values:<br>Update &#124; Acquisition &#124; StubAcquisition<br><br>Update – (Not supported for CustomURL flows) attempts to update an existing app to its latest available version.  No work is done if the app is not present<br><br>Acquisition – attempts to acquire the latest version of an app.<br><br>StubAcquisition -  attempts to acquire a "stub" of the app (if it is available).  Acquires the full app if the stub is not available. |
 | ProductId | String | (Only required for Store scenarios)<br><br>The ProductId of the desired Store app<br> |
@@ -95,7 +95,7 @@ Additionally, the following optional properties can be specified to modify the b
         "Source": "Store",  
         "Scenario": "StubAcquisition",  
         "PFN": "FakePackageFamilyName",  
-        "ProductId": "???????????",  
+        "ProductId": "StoreProductId",  
         "HonorDeprovisioning": true,  
         "AllowedInOobe": true,  
         "IncludedRegions": ["US", "MX"],  
