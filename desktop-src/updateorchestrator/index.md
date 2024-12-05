@@ -89,7 +89,7 @@ Additionally, the following optional properties can be specified to modify the b
                                             
 ### Samples
 **Store-based stub acquisition, only in US and Mexico, to execute during OOBE**<br>
-````
+```
     {  
         "RegistrationVersion":1,  
         "Source": "Store",  
@@ -101,11 +101,11 @@ Additionally, the following optional properties can be specified to modify the b
         "IncludedRegions": ["US", "MX"],  
         "Priority": 50  
     }
-````
+```
 <br>
 
 **URL-based app acquisition on amd64 devices, excluding Education and EducationN editions, on Windows 11 23H2 only `(not Windows 11 22H2)`** <br>  
-````
+```
     {  
         "RegistrationVersion":2,  
         "Source": "CustomURL",  
@@ -117,8 +117,8 @@ Additionally, the following optional properties can be specified to modify the b
         "MinimumAllowedBuildVersion": 22631,  
         "Priority": 60 
     }
-````         
-<br>                                       
+```         
+                                       
     
 ### Tools  
 
