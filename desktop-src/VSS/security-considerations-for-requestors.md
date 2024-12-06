@@ -56,7 +56,7 @@ Requesters can explicitly do the following:
             RPC_C_AUTHN_LEVEL_PKT_PRIVACY, //  DWORD                        dwAuthnLevel,
             RPC_C_IMP_LEVEL_IMPERSONATE,   //  DWORD                        dwImpLevel,
             NULL,                          //  void                        *pAuthList,
-            EOAC_STATIC,                   //  DWORD                        dwCapabilities,
+            EOAC_STATIC_CLOAKING,          //  DWORD                        dwCapabilities,
             NULL                           //  void                        *pReserved3
             );
     ```
@@ -65,7 +65,7 @@ Requesters can explicitly do the following:
 
     -   Set the authentication level to at least **RPC\_C\_AUTHN\_LEVEL\_PKT\_INTEGRITY**. For better security, consider using **RPC\_C\_AUTHN\_LEVEL\_PKT\_PRIVACY**.
     -   Set the impersonation level to **RPC\_C\_IMP\_LEVEL\_IMPERSONATE**.
-    -   Set the cloaking security capabilities to **EOAC\_STATIC**. For more information about cloaking security, see [Cloaking](../com/cloaking.md).
+    -   Set the cloaking security capabilities to **EOAC\_STATIC\_CLOAKING**. For more information about cloaking security, see [Cloaking](../com/cloaking.md).
 
     The following code example shows how a requester should call [**CoInitializeSecurity**](/windows/win32/api/combaseapi/nf-combaseapi-coinitializesecurity) in Windows 7 and Windows Server 2008 R2 and earlier (or in Windows 8 and Windows Server 2012 and later, if RVSS compatibility is not needed):
 
