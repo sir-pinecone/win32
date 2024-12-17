@@ -2,7 +2,7 @@
 title: Developer audience, and sample code
 description: This topic describes the groups of developers for whom the Antimalware Scan Interface is designed.
 ms.topic: article
-ms.date: 11/14/2024
+ms.date: 12/17/2024
 ---
 
 # Developer audience, and sample code
@@ -124,6 +124,8 @@ For example,
 
 ## Known issues
 
+### Process didn't meet signing level requirements
+
 If you have a non-Microsoft antimalware service that's [Windows Protected Process Light (PPL)](/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_protection_level_information) or [Antimalware Protected Process Light (Anti-malware PPL)](/windows/win32/services/protecting-anti-malware-services-) that tries to load in an AMSI provider, you might see the following information in the Code Integrity event log:
 
 ```properties
@@ -140,7 +142,7 @@ Code Integrity determined that a process (\Device\HarddiskVolume3\<Folder>\<Fold
 
 ```
 
-To view  the Code Integrity event log, follow these steps:
+To view the Code Integrity event log, follow these steps:
 
 1. Open Event Viewer. 
 
@@ -151,3 +153,45 @@ Or if you have System Audit Integrity auditing enabled, look for this:
 - Log Name: Security
 - Source: Microsoft Windows Security 
 - Event ID: `5038` 
+
+### A file hash isn't valid
+
+AMSI API's are designed to work with non-protected processes. ISV's are unable to sign their AMSI registered DLL's to be allowed to load into ELAM/PPL secured processes. In such cases, you might see the following information in the Windows Security event log:
+
+
+```properties
+
+Description: 
+
+Code integrity determined that the image hash of a file is not valid.  The file could be corrupt due to unauthorized modification, or the invalid hash could indicate a potential disk device error. 
+
+File Name: \Device\HarddiskVolume3\<Folder> \<Folder w/ the ISV name> \<Folder w/ the product name>\<Your Amsi Provider>.dll 
+
+```
+ 
+To view the Windows Security event log, follow these steps:
+
+1. Open Event Viewer.
+
+2. In the Navigation pane, expand **Windows Logs**, and then select **Security**.
+
+Workaround: 
+
+You can filter out events by following these steps:
+
+1. To filter out an event, such as Event ID 3033 or 5038, open Event Viewer.
+
+2. In the navigation pane, expand **Applications and Services Logs** > **Microsoft** > **Windows** > **Code Integrity**, and then select **Operational**. 
+
+3. Right-click **Operational**, and then select **Filter Current Log...**.
+   
+4. In the **\<All Event IDs\>** box, type `-3033` (or `-5038`), and then select **OK**. 
+
+Or, in Event Viewer, you can expand Windows Logs, right-click Security, select **Filter Current Log...**, and then specify `-3033` or `-5038`.
+
+> [!TIP]
+> If you are using Windows Event Forwarding (WEF), you can filter details what event ids or descriptions are forwarded. For more information, see [Tech Community Blog: Advanced XML filtering in the Windows Event Viewer](https://techcommunity.microsoft.com/blog/askds/advanced-xml-filtering-in-the-windows-event-viewer/399761) 
+
+### Filter out Events 3033 and 5038 for your SIEM
+
+If your organization is using a SIEM server, make sure to filter out Event ID 3033 and/or Event ID 5038 specific to AMSI so that you don't ingest information that isn't useful for your Security Operations Center (SOC) analysts. For more information, see [Use Windows Event Forwarding to help with intrusion detection](/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection).
