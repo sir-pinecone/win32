@@ -165,7 +165,7 @@ Find more information in this article: https://technet.microsoft.com/library/dn7
 
 1. Set the certificate authentication with the following command:
 
-    **winrm set winrm/config/service/auth @{Certificate="true"}**
+    **winrm set winrm/config/service/auth '@{Certificate="true"}'**
 
 2. A WinRM HTTPS listener with the server authentication certificate thumb print should exist on the event collector computer. This can be verified with the following command:
 
@@ -177,7 +177,7 @@ Find more information in this article: https://technet.microsoft.com/library/dn7
 
     To create a new listener, use the following command:
 
-    **winrm create winrm/config/Listener?Address=&#42;+Transport=HTTPS @{Hostname="**&lt;_FQDN of the collector_&gt;**";CertificateThumbprint="**&lt;_Thumb print of the server authentication certificate_&gt;**"}**
+    **winrm create winrm/config/Listener?Address=&#42;+Transport=HTTPS '@{Hostname="**&lt;_FQDN of the collector_&gt;**";CertificateThumbprint="**&lt;_Thumb print of the server authentication certificate_&gt;**"}'**
 
 ### Configure certificate mapping on the Event Collector
 
@@ -188,7 +188,7 @@ Find more information in this article: https://technet.microsoft.com/library/dn7
     > [!NOTE]
     > This is the certificate of the Root or Intermediate Certification Authorities (CA) that issued the certificates installed on the Event Source computers (the CA immediately above the certificate in the certificate chain):
 
-    **winrm create winrm/config/service/certmapping?Issuer**=&lt;_Thumbprint of the issuing CA certificate_&gt;**+Subject=&#42;+URI=&#42; @{UserName="**&lt;_username_&gt;**";Password="**&lt;_password_&gt;**"} -remote:localhost**
+    **winrm create winrm/config/service/certmapping?Issuer**=&lt;_Thumbprint of the issuing CA certificate_&gt;**+Subject=&#42;+URI=&#42; '@{UserName="**&lt;_username_&gt;**";Password="**&lt;_password_&gt;**"}' -remote:localhost**
 
 4. From a client, use the following command to test the listener and the certificate mapping:
 
