@@ -56,7 +56,7 @@ In the manifest file, the following changes will need to be made:
 `<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26226.0" />`.
 
   > [!NOTE]
-  > Not all features are available in the minimum build, check out the [release notes](https://github.com/microsoft/win32-app-isolation/blob/main/relnotes/windows-release-notes.md) for more detailed information.
+  > Not all features are available in the minimum build, check out the [release notes](app-isolation-release-notes.md) for more detailed information.
 
 - In `<Application>` replace any existing entrypoint/trustlevel/runtimebehavior with `EntryPoint="Windows.FullTrustApplication"` `uap18:EntryPoint="Isolated.App"` `uap18:TrustLevel="appContainer" uap18:RuntimeBehavior="appSilo"`.
 - In `<Application>` extensions, remove any `EntryPoints=*` or `Executable=*` as those are inherited from the parent `<Application>`

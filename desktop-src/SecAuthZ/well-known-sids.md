@@ -2,8 +2,9 @@
 description: Well-known security identifiers (SIDs) identify generic groups and generic users.
 ms.assetid: eb2f95c4-9465-409b-b76c-9ccae1d05eda
 title: Well-known SIDs
-ms.topic: article
-ms.date: 03/13/2024
+ms.topic: concept-article
+ms.date: 11/25/2024
+#Customer intent: As a Windows developer, I want to learn about well-known SIDs so that I can use them in my Win32 applications.
 ---
 
 # Well-known SIDs
@@ -50,12 +51,12 @@ The following [*RID*](/windows/win32/SecGloss/r-gly) values are used with [*univ
 
 | Relative identifier authority | Value | String value |
 |-------------------------------|-------|--------------|
-| SECURITY_NULL_RID          | `0` | `S-1-0` |
-| SECURITY_WORLD_RID         | `0` | `S-1-1` |
-| SECURITY_LOCAL_RID         | `0` | `S-1-2` |
-| SECURITY_LOCAL_LOGON_RID   | `1` | `S-1-2` |
-| SECURITY_CREATOR_OWNER_RID | `0` | `S-1-3` |
-| SECURITY_CREATOR_GROUP_RID | `1` | `S-1-3` |
+| SECURITY_NULL_RID          | `0` | `S-1-0-0` |
+| SECURITY_WORLD_RID         | `0` | `S-1-1-0` |
+| SECURITY_LOCAL_RID         | `0` | `S-1-2-0` |
+| SECURITY_LOCAL_LOGON_RID   | `1` | `S-1-2-1` |
+| SECURITY_CREATOR_OWNER_RID | `0` | `S-1-3-0` |
+| SECURITY_CREATOR_GROUP_RID | `1` | `S-1-3-1` |
 
 The SECURITY_NT_AUTHORITY (S-1-5) predefined identifier authority produces SIDs that are not universal but are meaningful only on Windows installations. You can use the following RID values with SECURITY_NT_AUTHORITY to create well-known SIDs.
 
