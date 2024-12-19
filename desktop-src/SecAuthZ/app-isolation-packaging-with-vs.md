@@ -34,7 +34,7 @@ In Visual Studio, create a new C# or C++ project using the template *Blank App, 
 
 :::image type="content" source="images/app-isolation/vs/04-New-Windows-Project.png" alt-text="A screenshot showing the new WinUI project screen in Visual Studio":::
 
-## Step 3 - Install Microsoft.Windows.SDK.BuildTools version 10.0.26100.1 or later with NuGet
+## Step 3 - Install Microsoft.Windows.SDK.BuildTools version 10.0.26100.1742 or later with NuGet
 
 Go to *Project -> Manage NuGet Packages* to install *Microsoft.Windows.SDK.BuildTools* version 10.0.26100.1 (or later).
 
@@ -44,32 +44,30 @@ Go to *Project -> Manage NuGet Packages* to install *Microsoft.Windows.SDK.Build
 
 :::image type="content" source="images/app-isolation/vs/07-SDK-BuildTools-Info.png" alt-text="A screenshot showing the info for the Build Tools package on the NuGet screen in Visual Studio":::
 
-## Step 4 - Edit the Packaging.appxmanifest file
+## Step 4 - Edit the Packaging.appxmanifest and project files
 
 In the manifest file, the following changes will need to be made:
 
 **Note**: Isolated win32 applications are not compatible with other application types within the same package.
 
-- Add `xmlns:previewsecurity2="http://schemas.microsoft.com/appx/manifest/preview/windows10/security/2"`
-to the `<Package>` element if it's not there already.
-  - Add `previewsecurity2` to `IgnorableNamespaces` at the end of the `<Package>` element.
-- Add `xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"` to the `<Package>` element
-if it's not there already.
-  - Add `uap10` to `IgnorableNamespaces` at the end of the `<Package>` element.
+- Add `xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"` to the `<Package>` element if it's not there already.
+  - Add `UAP18` to `IgnorableNamespaces` at the end of the `<Package>` element.
 - In `<Dependencies>` change `TargetDeviceFamily` to
-`<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26100.0" />`.
+`<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26226.0" />`.
 
   > [!NOTE]
   > Not all features are available in the minimum build, check out the [release notes](https://github.com/microsoft/win32-app-isolation/blob/main/relnotes/windows-release-notes.md) for more detailed information.
 
-- In `<Application>` replace any existing entrypoint/trustlevel/runtimebehavior with `uap10:TrustLevel="appContainer" previewsecurity2:RuntimeBehavior="appSilo"`.
+- In `<Application>` replace any existing entrypoint/trustlevel/runtimebehavior with `EntryPoint="Windows.FullTrustApplication"` `uap18:EntryPoint="Isolated.App"` `uap18:TrustLevel="appContainer" uap18:RuntimeBehavior="appSilo"`.
 - In `<Application>` extensions, remove any `EntryPoints=*` or `Executable=*` as those are inherited from the parent `<Application>`
 - Add `desktop7:Scope="user"` to the extension element for `windows.protocol`.
 
   > [!NOTE]
   > By default, Visual Studio will automatically add `<rescap:Capability name="runFullTrust">` to `<Capabilities>` due to the app being a packaged Win32. This should be removed unless the app has other manifested extensions which can affect the user global state, such as `comServer` or `FirewallRules`, since those require the `runFullTrust` capability.
 
-:::image type="content" source="images/app-isolation/vs/09-PackagingAppx-File.png" alt-text="A screenshot showing the packaging app config in Visual Studio":::
+:::image type="content" source="images/app-isolation/vs/08-PackagingAppx-File.png" alt-text="A screenshot showing the packaging app config in Visual Studio":::
+- Add `<AppxOSMaxVersionTestedReplaceManifestVersion>false</AppxOSMaxVersionTestedReplaceManifestVersion>` in the wapproj file, right after the target platform version lines
+:::image type="content" source="images/app-isolation/vs/09-Project-File.png" alt-text="A screenshot showing the project file config in Visual Studio":::
 
 ## Step 5 - Build and Publish App Packages
 
