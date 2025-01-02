@@ -19,6 +19,7 @@ If you have a feature request or wish to report a bug, file an issue in our GitH
 
 - Win32
 - Desktop Bridge (Centennial)
+- Desktop apps [packaged with external location](/windows/apps/desktop/modernize/grant-identity-to-nonpackaged-apps)
 
 ## Minimum requirements
 
