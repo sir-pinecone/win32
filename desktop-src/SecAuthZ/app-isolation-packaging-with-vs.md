@@ -51,12 +51,12 @@ In the manifest file, the following changes will need to be made:
 **Note**: Isolated win32 applications are not compatible with other application types within the same package.
 
 - Add `xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"` to the `<Package>` element if it's not there already.
-  - Add `UAP18` to `IgnorableNamespaces` at the end of the `<Package>` element.
+  - Add `uap18` to `IgnorableNamespaces` at the end of the `<Package>` element.
 - In `<Dependencies>` change `TargetDeviceFamily` to
 `<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26226.0" />`.
 
   > [!NOTE]
-  > Not all features are available in the minimum build, check out the [release notes](app-isolation-release-notes.md) for more detailed information.
+  > Not all features are available in the minimum build, check out the [release notes](app-isolation-release-notes.md) for more detailed information. In addition, the following manifest changes enable the app to become an isolated app, but it can continue to run as a Win32 app in operating systems where Win32 app isolation isn't supported.
 
 - In `<Application>` replace any existing entrypoint/trustlevel/runtimebehavior with `EntryPoint="Windows.FullTrustApplication"` `uap18:EntryPoint="Isolated.App"` `uap18:TrustLevel="appContainer" uap18:RuntimeBehavior="appSilo"`.
 - In `<Application>` extensions, remove any `EntryPoints=*` or `Executable=*` as those are inherited from the parent `<Application>`
