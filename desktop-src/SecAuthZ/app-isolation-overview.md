@@ -19,6 +19,7 @@ If you have a feature request or wish to report a bug, file an issue in our GitH
 
 - Win32
 - Desktop Bridge (Centennial)
+- Packages with [external location](https://statics.teams.cdn.office.net/evergreen-assets/safelinks/1/atp-safelinks.html)
 
 ## Minimum requirements
 
