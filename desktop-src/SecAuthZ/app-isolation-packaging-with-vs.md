@@ -51,7 +51,7 @@ In the manifest file, the following changes will need to be made:
 **Note**: Isolated win32 applications are not compatible with other application types within the same package.
 
 - Add `xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"` to the `<Package>` element if it's not there already.
-  - Add `UAP18` to `IgnorableNamespaces` at the end of the `<Package>` element.
+  - Add `uap18` to `IgnorableNamespaces` at the end of the `<Package>` element.
 - In `<Dependencies>` change `TargetDeviceFamily` to
 `<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.26100.0" MaxVersionTested="10.0.26226.0" />`.
 
