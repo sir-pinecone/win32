@@ -2,8 +2,8 @@
 description: Control Flow Guard (CFG) is a highly-optimized platform security feature that was created to combat memory corruption vulnerabilities.
 ms.assetid: 116EAD64-7CAE-455C-BA43-9492F78DE873
 title: Control Flow Guard for platform security
-ms.topic: article
-ms.date: 08/15/2024
+ms.topic: concept-article
+ms.date: 12/17/2024
 ---
 
 # Control Flow Guard for platform security
@@ -28,11 +28,13 @@ In most cases, there's no need to change source code. All you have to do is add 
 
 The simplest method is to navigate to **Project \| Properties \| Configuration Properties \| C/C++ \| Code Generation** and choose **Yes (/guard:cf)** for Control Flow Guard.
 
-![cfg property in visual studio](images/cfg-vs.png)
+![A screenshot of the Control Flow Guard property in Visual Studio's Code Generation build configuration.](images/cfg-vs.png)
 
 Alternatively, add **/guard:cf** to **Project \| Properties \| Configuration Properties \| C/C++ \| Command Line \| Additional Options** (for the compiler) and **/guard:cf** to **Project \| Properties \| Configuration Properties \| Linker \| Command Line \| Additional Options** (for the linker).
 
-![cfg property for compiler](images/cfg-compiler.png)![cfg property for linker](images/cfg-linker.png)
+![A screenshot of the C/C++ Command Line Additional Options build configuration in Visual Studio with the property set to /guard:cf](images/cfg-compiler.png)
+
+![A screenshot of the Linker Command Line Additional Options build configuration in Visual Studio with the property set to /guard:cf](images/cfg-linker.png)
 
 See [/guard (Enable Control Flow Guard)](/cpp/build/reference/guard-enable-control-flow-guard) for additional info.
 
@@ -44,9 +46,9 @@ You also have the option of dynamically controlling the set of icall target addr
 
 Run the [dumpbin tool](/cpp/build/reference/dumpbin-reference) (included in the Visual Studio installation) from the Visual Studio command prompt with the */headers* and */loadconfig* options: **dumpbin /headers /loadconfig test.exe**. The output for a binary under CFG should show that the header values include "Guard", and that the load config values include "CF Instrumented" and "FID table present".
 
-![output from dumpbin /headers](images/cfg-dumpbin-headers.png)
+![A screenshot of the output from dumpbin /headers](images/cfg-dumpbin-headers.png)
 
-![output from dumpbin /loadconfig](images/cfg-dumpbin-loadconfig.png)
+![A screenshot of the output from dumpbin /loadconfig](images/cfg-dumpbin-loadconfig.png)
 
 ## How Does CFG Really Work?
 
@@ -66,11 +68,11 @@ The runtime support, provided by the Windows kernel:
 
 To illustrate:
 
-![cfg pseudocode](images/cfg-pseudocode.jpg)
+![A diagram illustrating the CFG checks inserted by the compiler.](images/cfg-pseudocode.jpg)
 
 When a CFG check fails at runtime, Windows immediately terminates the program, thus breaking any exploit that attempts to indirectly call an invalid address.
 
-## See also
+## Related content
 
 [/guard (Enable Control Flow Guard)](/cpp/build/reference/guard-enable-control-flow-guard)
 

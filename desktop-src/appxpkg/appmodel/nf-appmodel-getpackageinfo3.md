@@ -1,8 +1,8 @@
 ---
-title: GetCurrentPackageInfo3
+title: GetPackageInfo3
 description: Retrieves the package graph's current generation ID.
 ms.topic: reference
-ms.date: 05/03/2022
+ms.date: 11/26/2024
 req.lib: 
 req.dll: Kernelbase.dll
 topic_type:
@@ -13,12 +13,12 @@ api_type:
 api_location:
 - Kernelbase.dll
 api_name:
-- GetCurrentPackageInfo3
+- GetPackageInfo3
 targetos: Windows
 ms.localizationpriority: low
 ---
 
-# GetCurrentPackageInfo3 function (appmodel.h)
+# GetPackageInfo3 function (appmodel.h)
 
 Retrieves the package graph's current generation ID.
 
@@ -27,7 +27,8 @@ See **Remarks** for info about how to call the function.
 ## Syntax
 
 ```cpp
-HRESULT GetCurrentPackageInfo3(
+HRESULT GetPackageInfo3(
+  _In_ PACKAGE_INFO_REFERENCE                 packageInfoReference,
   _In_ UINT32                                 flags,
   _In_ PackageInfo3Type                       packageInfoType,
   _Inout_ UINT32                             *bufferLength,
@@ -37,6 +38,12 @@ HRESULT GetCurrentPackageInfo3(
 ```
 
 ## Parameters
+
+`packageInfoReference`
+
+Type: **PACKAGE_INFO_REFERENCE**
+
+A reference to package information.
 
 `flags`
 

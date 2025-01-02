@@ -66,7 +66,7 @@ UIAccess should not be used:
 -   By assistive technology applications that display information or UI that is not relevant to the accessibility scenario they target.
 -   By applications that just want to appear above other applications in the new Windows UI.
     > [!Note]  
-    > Applications developed for the new Windows UI do not have UIAccess as an available option.
+    > UWP Applications do not have UIAccess as an available option.
 
      
 
