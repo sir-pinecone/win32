@@ -25,7 +25,7 @@ To paint the top half of a window, use code like the following.
 
 
 ```C++
-GetClient Rect(hwnd, &rc);
+GetClientRect(hwnd, &rc);
 rc.bottom = (rc.bottom - rc.top) / 2;
 hdc = GetDC(hwnd);
 EnumDisplayMonitors(hdc, &rc, MyPaintEnumProc, 0);
