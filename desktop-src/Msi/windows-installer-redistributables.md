@@ -17,7 +17,7 @@ Windows Installer 4.5 and earlier is available as a redistributable software upd
 You can find all the available Windows Installer redistributables at the [Microsoft Download Center](https://www.microsoft.com/Downloads/).
 
 ### Windows Installer 4.5 Redistributable
-[Windows Installer 4.5 redistributable package](https://support.microsoft.com/kb/942288) is available at: [https://go.microsoft.com/fwlink/p/?LinkID=101159](https://go.microsoft.com/fwlink/p/?LinkID=101159).
+[Windows Installer 4.5 redistributable package](https://support.microsoft.com/kb/942288) is available here: [https://go.microsoft.com/fwlink/p/?LinkID=101159](https://go.microsoft.com/fwlink/p/?LinkID=101159).
 
 | File Name | OS Version | Architecture |
 | --- | --- | --- |
