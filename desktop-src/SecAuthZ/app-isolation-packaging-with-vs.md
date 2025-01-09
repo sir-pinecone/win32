@@ -12,9 +12,9 @@ This page will cover everything needed to package an application to leverage Win
 > [!IMPORTANT]
 > **This feature is in preview:** Some information relates to a prerelease product which may be substantially modified before it's commercially released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
 
-## Required prerequisites
+## Prerequisites
 
-The following prerequisites are required to package an application into an isolated Win32 app:
+The following are required to package an application into an isolated Win32 app:
 
 - **Visual Studio** version 17.10.2 or higher
 
