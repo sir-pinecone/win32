@@ -2,7 +2,7 @@
 title: Custom texture/mesh visualizers in PIX
 description: Documenting how to use custom texture/mesh visualizers with PIX
 ms.topic: article
-ms.date: 07/30/2024
+ms.date: 10/18/2024
 ---
 
 # Custom texture/mesh visualizers in PIX
@@ -86,7 +86,7 @@ To get more information on the API, refer to the HLSL API section.
 
 Assuming you've set up paths to your visualizer shaders in the settings, you can now see your visualizers listed in the *Custom Visualization* panel, which you can open using the following buffer viewer toolbar icon: `{}`.
 
-### Custom Visualization panel 
+### Custom visualization panel 
 
 From that panel, you can select any available custom visualizer, and see any warning/error messages from the shader compiler. 
 
@@ -142,6 +142,28 @@ In the example above, we access vertices declaring `Vertices` to point to the pi
 To get more information on the API, refer to the HLSL API section.
 
 ![Example output from the buffer visualizer above](images/custom-visualizers-buffer-example.png)
+
+### Visualize a buffer as a texture
+
+It is also possible to select a buffer and a custom visualizer outputting to a texture. In that case,
+the texture viewer will be displayed in place of the regular buffer viewer to display the result.
+
+## User constants
+
+It is possible to add constants whose values can be set from the UI for every visualizer invocation. They are supported for all custom visualizer types.
+
+### HLSL example
+
+```hlsl
+PixExt_Declare_UserConstants_Start
+    PixExt_UserConstant_Int(int_constant_name);
+    PixExt_UserConstant_Uint(uint_constant_name);
+    PixExt_UserConstant_Float(float_constant_name);
+PixExt_Declare_UserConstants_End
+```
+You are allowed to have a single user constant block (`PixExt_Declare_UserConstants_Start` / `PixExt_Declare_UserConstants_End` pair) in your visualizer. You can add any number of constants of 3 different types, namely `int`, `uint`, `float`. For each one declared, a new entry will appear in the visualization panel to enter the desired value. `0` is the default for all constants. 
+
+![User constants example](images/custom-visualizers-user-constants.png)
 
 ## PIX HLSL API 
 
@@ -205,9 +227,13 @@ The API defines a set of special registers that you can use to get access to res
 ```PixExt_VertexBufferRegister28```<br>
 ```PixExt_VertexBufferRegister29```<br>
 ```PixExt_VertexBufferRegister30```<br>
-```PixExt_VertexBufferRegister31```<br>
+```PixExt_VertexBufferRegister31```
 
-#### Shader inputs 
+#### Variable-rate shading
+
+```PixExt_ShadingRateImageRegister```
+
+### Shader inputs 
 
 You can use the `PixExt_ComputeInput` structure as an input to your main shader function. This is a helper, and isn't mandatory. 
 
@@ -221,7 +247,7 @@ struct PixExt_ComputeInput
 };
 ```
 
-#### Selected texture information 
+### Selected texture information 
 
 ```hlsl
 // Returns the currently selected sample.
@@ -234,7 +260,7 @@ uint PixExt_GetSelectedMip();
 uint PixExt_GetSelectedSlice();
 ```
 
-#### Selected event arguments 
+### Selected event arguments 
 
 ```hlsl
 // For a DrawIndexedInstanced event,
@@ -274,11 +300,30 @@ uint PixExt_GetThreadGroupCountY();
 uint PixExt_GetThreadGroupCountZ();
 ```
 
-#### Shader outputs 
+### Variable-rate shading
+
+```hlsl
+// Returns the screen-space VRS image pixel tile size.
+uint PixExt_GetShadingRateImageTileSize();
+```
+
+### Bind by resource name
+
+You can explicitly bind to a resource by name using the `PixExt_BindByName` special register. 
+When used on a custom visualizer resource declaration, it instructs PIX to find a resource of 
+the same name in the selected event to bind to. For instance, using the following code in a 
+custom visualizer would result in a binding to a resource named `g_texture` found in the 
+selected event shaders.
+
+```hlsl
+Texture2D<float4> g_texture : PixExt_BindByName;
+```
+
+### Shader outputs 
 
 You output data to the viewers using the following functions. 
 
-##### Texture
+#### Texture
 
 ```hlsl
 // Stores the given INT pixel data for texture viewer display.
@@ -300,7 +345,7 @@ void PixExt_StorePixel_Uint(uint2 offset, uint4 pixel);
 void PixExt_StorePixel_Float(uint2 offset, float4 pixel);
 ```
 
-##### Mesh
+#### Mesh
 
 ```hlsl
 // Stores the given index for mesh viewer display.
