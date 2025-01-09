@@ -10,6 +10,8 @@ ms.date: 10/01/2024
 
 The Win32 app isolation security feature for Windows provides a sandbox environment that can integrated into Win32 apps, providing an additional layer of security. This enhancement requires little to no change to your code.
 
+For the latest updates and enhancements, please refer to the [Release notes](app-isolation-release-notes.md).
+
 If you have a feature request or wish to report a bug, file an issue in our GitHub [repo](https://github.com/microsoft/win32-app-isolation/issues).
 
 > [!IMPORTANT]
