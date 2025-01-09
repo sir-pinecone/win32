@@ -41,7 +41,7 @@ Location: N/A
 
 Windows Server 2008 R2
 
-Download link: [download](https://www.microsoft.com/download/en/confirmation.aspx?id=8279)
+Download link: N/A
 
 MapName: Yes
 
