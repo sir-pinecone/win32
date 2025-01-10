@@ -8,21 +8,19 @@ ms.date: 05/31/2018
 
 # Retrieving the Last-Error Code
 
-When many system functions fail, they set the last-error code. If your application needs more details about an error, it can retrieve the last-error code using the [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror) function and display a description of the error using the [**FormatMessage**](/windows/desktop/api/WinBase/nf-winbase-formatmessage) function.
+When many system functions fail, they set the last-error code. If your application needs more details about an error, it can retrieve the last-error code using the [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror) function and get a description of the error using the [**FormatMessage**](/windows/desktop/api/WinBase/nf-winbase-formatmessage) function.
 
-The following example includes an error-handling function that prints the error message and terminates the process. The *lpszFunction* parameter is the name of the function that set the last-error code.
+The following example includes an error-handling function that prints the error message and terminates the process.
 
 
 ```C++
 #include <windows.h>
-#include <strsafe.h>
 
-void ErrorExit(LPCTSTR lpszFunction) 
+void ErrorExit() 
 { 
     // Retrieve the system error message for the last-error code
 
     LPVOID lpMsgBuf;
-    LPVOID lpDisplayBuf;
     DWORD dw = GetLastError(); 
 
     if (FormatMessage(
@@ -38,27 +36,9 @@ void ErrorExit(LPCTSTR lpszFunction)
         ExitProcess(dw);
     }
 
-    // Display the error message and exit the process
-
-    lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
-        (lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR));
-    if (lpDisplayBuf == NULL) {
-        MessageBox(NULL, TEXT("LocalAlloc failed"), TEXT("Error"), MB_OK);
-        LocalFree(lpMsgBuf);
-        ExitProcess(dw);
-    }
-
-    if (SUCCEEDED(StringCchPrintf((LPTSTR)lpDisplayBuf, 
-        LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-        TEXT("%s failed with error %d: %s"), 
-        lpszFunction, dw, lpMsgBuf))) { 
-        MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
-    } else {
-        MessageBox(NULL, TEXT("StringCchPrintf failed"), TEXT("Error"), MB_OK);
-    }
+    MessageBox(NULL, (LPCTSTR)lpMsgBuf, TEXT("Error"), MB_OK);
 
     LocalFree(lpMsgBuf);
-    LocalFree(lpDisplayBuf);
     ExitProcess(dw); 
 }
 
@@ -67,12 +47,6 @@ void main()
     // Generate an error
 
     if (!GetProcessId(NULL))
-        ErrorExit(TEXT("GetProcessId"));
+        ErrorExit();
 }
 ```
-
-
-
- 
-
- 
