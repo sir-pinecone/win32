@@ -25,7 +25,7 @@ void ErrorExit(LPCTSTR lpszFunction)
     LPVOID lpDisplayBuf;
     DWORD dw = GetLastError(); 
 
-    FormatMessage(
+    if (FormatMessage(
         FORMAT_MESSAGE_ALLOCATE_BUFFER | 
         FORMAT_MESSAGE_FROM_SYSTEM |
         FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -33,17 +33,29 @@ void ErrorExit(LPCTSTR lpszFunction)
         dw,
         MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
         (LPTSTR) &lpMsgBuf,
-        0, NULL );
+        0, NULL) == 0) {
+        MessageBox(NULL, TEXT("FormatMessage failed"), TEXT("Error"), MB_OK);
+        ExitProcess(dw);
+    }
 
     // Display the error message and exit the process
 
     lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
-        (lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR)); 
-    StringCchPrintf((LPTSTR)lpDisplayBuf, 
+        (lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR));
+    if (lpDisplayBuf == NULL) {
+        MessageBox(NULL, TEXT("LocalAlloc failed"), TEXT("Error"), MB_OK);
+        LocalFree(lpMsgBuf);
+        ExitProcess(dw);
+    }
+
+    if (SUCCEEDED(StringCchPrintf((LPTSTR)lpDisplayBuf, 
         LocalSize(lpDisplayBuf) / sizeof(TCHAR),
         TEXT("%s failed with error %d: %s"), 
-        lpszFunction, dw, lpMsgBuf); 
-    MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
+        lpszFunction, dw, lpMsgBuf))) { 
+        MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
+    } else {
+        MessageBox(NULL, TEXT("StringCchPrintf failed"), TEXT("Error"), MB_OK);
+    }
 
     LocalFree(lpMsgBuf);
     LocalFree(lpDisplayBuf);
@@ -54,7 +66,7 @@ void main()
 {
     // Generate an error
 
-    if(!GetProcessId(NULL))
+    if (!GetProcessId(NULL))
         ErrorExit(TEXT("GetProcessId"));
 }
 ```
