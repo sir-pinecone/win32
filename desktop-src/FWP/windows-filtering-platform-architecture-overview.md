@@ -18,7 +18,7 @@ The filter engine contains a user-mode component and a kernel-mode component, wh
 
 The user-mode component performs RPC and IPsec filtering. The filter engine contains approximately 10 user-mode filtering layers.
 
-The kernel-mode component performs filtering at the network and transport layers of the TC/IP stack. This component also calls the available callout functions during the [classification](basic-operation.md) process. The filter engine contains approximately 50 kernel-mode filtering layers.
+The kernel-mode component performs filtering at the network and transport layers of the TCP/IP stack. This component also calls the available callout functions during the [classification](basic-operation.md) process. The filter engine contains approximately 50 kernel-mode filtering layers.
 
 See [**Filtering Layer Identifiers**](management-filtering-layer-identifiers-.md) for a description of each of the filter engine layers.
 
