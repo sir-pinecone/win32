@@ -74,8 +74,3 @@ Next Step: [Receiving and Sending Data on the Server](receiving-and-sending-data
 
 [Listening on a Socket](listening-on-a-socket.md)
 </dt> </dl>
-
- 
-
- 
-p
