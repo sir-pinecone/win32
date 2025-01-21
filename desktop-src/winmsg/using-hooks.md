@@ -19,7 +19,7 @@ You can install a hook procedure by calling the [**SetWindowsHookEx**](/windows/
 
 You must place a global hook procedure in a DLL separate from the application installing the hook procedure. The installing application must have the handle to the DLL module before it can install the hook procedure. To retrieve a handle to the DLL module, call the [**LoadLibrary**](/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya) function with the name of the DLL. After you have obtained the handle, you can call the [**GetProcAddress**](/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress) function to retrieve a pointer to the hook procedure. Finally, use [**SetWindowsHookEx**](/windows/win32/api/winuser/nf-winuser-setwindowshookexa) to install the hook procedure address in the appropriate hook chain. **SetWindowsHookEx** passes the module handle, a pointer to the hook-procedure entry point, and 0 for the thread identifier, indicating that the hook procedure should be associated with all threads in the same desktop as the calling thread. This sequence is shown in the following example.
 
-```cpp syntax
+```cpp
 HOOKPROC hkprcSysMsg;
 static HINSTANCE hinstDLL; 
 static HHOOK hhookSysMsg; 
