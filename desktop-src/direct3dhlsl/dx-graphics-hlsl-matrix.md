@@ -27,7 +27,7 @@ You can declare matrix variables by using the [scalar type](dx-graphics-hlsl-sca
 TypeRowsCols Name
 ```
 
-Where `Type` is the [scalar type](dx-graphics-hlsl-scalar.md) of each of the components, `Rows` is an integer between 1 and 4 inclusive indicating the number of rows, `Cols` is an integer between 1 and 4 inclusive indicating the number of columns and `Name` is an ASCII string that uniquely identifies the variable name.
+Where `Type` is the [scalar type](dx-graphics-hlsl-scalar.md) of each of the components, `Rows` is a constant integer expression between 1 and 4 inclusive indicating the number of rows, `Cols` is a constant integer expression between 1 and 4 inclusive indicating the number of columns and `Name` is an ASCII string that uniquely identifies the variable name.
 
 Examples:
 
