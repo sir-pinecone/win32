@@ -26,7 +26,7 @@ You can declare vector variables by using the [scalar type](dx-graphics-hlsl-sca
 TypeComponents Name
 ```
 
-Where `Type` is the [scalar type](dx-graphics-hlsl-scalar.md) of each of the components, `Components` is an integer between 1 and 4 inclusive indicating the number of components and `Name` is an ASCII string that uniquely identifies the variable name.
+Where `Type` is the [scalar type](dx-graphics-hlsl-scalar.md) of each of the components, `Components` is an constant integer expression between 1 and 4 inclusive indicating the number of components and `Name` is an ASCII string that uniquely identifies the variable name.
 
 Examples:
 
