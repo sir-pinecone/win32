@@ -46,6 +46,8 @@ CustomActionData is the same as one of the MSI Public Properties and can cause u
 
 To correct this warning you should change the name of CustomActionData.
 
+For a list of properties implemented by Windows Installer, see [Property Reference](property-reference.md).
+
 ## Related topics
 
 <dl> <dt>
