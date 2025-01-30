@@ -43,7 +43,7 @@ These are the steps to consider when creating a Win32 app isolation app:
   - [Create](app-isolation-msix-packaging.md#packaging-an-isolated-win32-app-with-msix) an MSIX package from a Win32 installer.
   - [Turn](app-isolation-msix-packaging.md#convert-an-existing-msix-app-to-run-isolated) an MSIX Package into an isolated Win32 app.
 - If you need to identify the required capabilities:
-  - Use the [ACP](app-isolation-capability-profiler.md) tool.
+  - Use the [ACP](app-isolation-capability-profiler.md) tool or the [Supported Capabilities](app-isolation-supported-capabilities.md) section.
   - Repackage the app with the capabilities that were identified.
 
 ## Related topics
