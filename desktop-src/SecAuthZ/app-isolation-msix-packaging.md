@@ -76,24 +76,9 @@ You can find the download for MPT, as well as the profiler, in the [releases](ht
 
    :::image type="content" source="images/app-isolation/11-packaging-manifest.png" alt-text="A screenshot showing the app manifest file contents":::
 
-1. The app might need additional capabilities to function correctly now that it has been isolated.
+1. The app might need additional capabilities to function correctly now that it has been isolated. Refer to the [supported capabilities](app-isolation-supported-capabilities.md) page if needed.
 
-   These capabilities directly add functionality back to isolated apps.
-
-   - `isolatedWin32-print` - Print documents
-   - `isolatedWin32-sysTrayIcon` - Display notifications from the Systray
-   - `isolatedWin32-shellExtensionContextMenu` - Display COM-based context menu entries
-   - `isolatedWin32-promptForAccess` - Prompt Users for file access
-   - `isolatedWin32-accessToPublisherDirectory` - Access to directories that end with the publisher ID
-
-   These capabilities allow minimal access to libraries such as MSVC runtime or other Windows/3rd Party DLLs for applications that don't support prompting.
-
-   - `isolatedWin32-dotNetBreadcrumbStore`
-   - `isolatedWin32-profilesRootMinimal`
-   - `isolatedWin32-userProfileMinimal`
-   - `isolatedWin32-volumeRootMinimal`
-
-1. Save and close the manifest window. If there are any errors in the manifest, MPT will display them. Select Create/Save to generate the .msix file. This can take several minutes depending on the size of the package
+1. Save and close the manifest window. If there are any errors in the manifest, MPT will display them. Select Create/Save to generate the .msix file. This can take several minutes depending on the size of the package.
 
    - If there are errors with the manifest, a more actionable error message can be found in Event Viewer under `Application and Services/Microsoft/Windows/AppxPackagingOM/Microsoft-Windows-AppxPackaging/Operational`
 
