@@ -210,6 +210,8 @@
           href: app-isolation-overview.md
         - name: "Release notes"
           href: app-isolation-release-notes.md
+        - name: "Supported Capabilities"
+          href: app-isolation-supported-capabilities.md
         - name: "Consent for Isolated Win32 apps"
           href: app-isolation-app-consent.md
         - name: "Package isolated Win32 apps with MSIX"
