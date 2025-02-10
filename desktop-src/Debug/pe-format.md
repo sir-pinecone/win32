@@ -1836,7 +1836,7 @@ Executable code accesses a static TLS data object through the following steps:
 
     The Microsoft run-time library facilitates this process by defining a memory image of the TLS directory and giving it the special name "\_\_tls\_used" (Intel x86 platforms) or "\_tls\_used" (other platforms). The linker looks for this memory image and uses the data there to create the TLS directory. Other compilers that support TLS and work with the Microsoft linker must use this same technique.
 
-2.  When a thread is created, the loader communicates the address of the thread's TLS array by placing the address of the thread environment block (TEB) in the FS register. A pointer to the TLS array is at the offset of 0x2C from the beginning of TEB. This behavior is Intel x86-specific.
+2.  When a thread is created, the loader communicates the address of the thread's TLS array by placing the address of the thread environment block (TEB) in the FS (for x86) or GS (for x64) register. A pointer to the TLS array is at the offset of 0x2C from the beginning of TEB. This behavior is Intel x86-specific.
 
 3.  The loader assigns the value of the TLS index to the place that was indicated by the Address of Index field.
 
