@@ -16,8 +16,8 @@ A number of companies are manufacturing high-definition mouse devices, such as M
 
 Here are the three primary methods to retrieve mouse data:
 
--   [WM\_MOUSEMOVE](/windows)
--   [WM\_INPUT](/windows)
+-   [WM\_MOUSEMOVE](#wm_mousemove)
+-   [WM\_INPUT](#wm_input)
 -   [DirectInput](#directinput)
 
 There are advantages and disadvantages to each method, depending on how the data will be used.
